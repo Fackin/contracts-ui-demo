@@ -1,9 +1,9 @@
 // Copyright 2022-2024 use-ink/contracts-ui authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { ChatAltIcon, CogIcon } from '@heroicons/react/outline';
+import { CogIcon } from '@heroicons/react/outline';
 import { useCallback, useState } from 'react';
-import { HelpModal } from 'ui/components/modal';
+// import { HelpModal } from 'ui/components/modal';
 import { SettingsModal } from 'ui/components/modal/SettingsModal';
 
 type ModalName = 'help' | 'settings';

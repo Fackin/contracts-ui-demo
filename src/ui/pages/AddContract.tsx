@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { Link } from 'react-router-dom';
-import { ChevronRightIcon, CodeIcon, UploadIcon, DocumentAddIcon } from '@heroicons/react/outline';
+import { CodeIcon, UploadIcon, DocumentAddIcon } from '@heroicons/react/outline';
 import { RootLayout } from 'ui/layout';
 
 export function AddContract() {

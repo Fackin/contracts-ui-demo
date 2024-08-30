@@ -3,16 +3,16 @@
 
 import { DocumentTextIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
-import { NavLink } from './NavLink';
+// import { NavLink } from './NavLink';
 import { useDatabase } from 'ui/contexts';
 import { useDbQuery } from 'ui/hooks';
 import { Dropdown } from 'ui/components';
 import { useNavigate } from 'react-router';
-import {
-  components,
-  ControlProps,
-} from 'react-select';
-import type { DropdownOption } from 'types';
+// import {
+//   components,
+//   ControlProps,
+// } from 'react-select';
+// import type { DropdownOption } from 'types';
 
 export function QuickLinks() {
   const navigate = useNavigate();
