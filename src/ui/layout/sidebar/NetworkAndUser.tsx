@@ -44,6 +44,7 @@ export function NetworkAndUser() {
           status === 'loading' ? 'isConnecting' : '',
           status === 'error' ? 'isError' : '',
         )}
+        menuPosition="fixed"
         onChange={e => {
           navigate(`/?rpc=${e}`);
         }}

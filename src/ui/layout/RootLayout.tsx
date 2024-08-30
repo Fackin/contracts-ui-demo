@@ -9,7 +9,7 @@ export function RootLayout({ accessory, heading, help, children, aside }: PagePr
     <section
       className={classes(
         'w-full overflow-y-auto p-10',
-        aside && 'grid grid-cols-[1fr_400px] gap-10',
+        aside && 'flex flex-col gap-10',
       )}
     >
       <main>
@@ -21,7 +21,7 @@ export function RootLayout({ accessory, heading, help, children, aside }: PagePr
 
         <div className="flex h-full flex-col">{children}</div>
       </main>
-      {aside && <aside className="flex flex-col">{aside}</aside>}
+      {aside && <aside className="grid md:grid-cols-[1fr_400px] gap-10">{aside}</aside>}
     </section>
   );
 }

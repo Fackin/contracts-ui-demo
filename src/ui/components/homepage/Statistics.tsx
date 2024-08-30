@@ -44,7 +44,7 @@ export function Statistics(): React.ReactElement | null {
   return (
     <>
       <div
-        className="mb-8 grid w-full grid-cols-4 gap-4 border-b border-gray-200 pb-8 dark:border-gray-800 xl:grid-cols-2"
+        className="mb-5 grid w-full grid-cols-4 gap-4 border-b border-gray-200 pb-8 dark:border-gray-800 xl:grid-cols-2"
         data-cy="chain-info"
       >
         {Object.entries(entries).map(([label, value], i) => {

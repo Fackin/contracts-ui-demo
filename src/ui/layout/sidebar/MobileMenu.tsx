@@ -39,7 +39,7 @@ export function MobileMenu() {
         </button>
       </div>
       {mainMenuOpen && (
-        <>
+        <div className="w-full absolute bg-white dark:bg-elevation-1">
           <hr className="mx-4 border border-gray-700" />
           <div className="space-y-4 px-4 py-3">
             <Navigation />
@@ -47,15 +47,17 @@ export function MobileMenu() {
             <hr className="border border-gray-700" />
             <Footer />
           </div>
-        </>
+          <hr className="mx-4 border border-gray-700" />
+        </div>
       )}
       {networkMenuOpen && (
-        <>
+        <div className="w-full absolute bg-white dark:bg-elevation-1">
           <hr className="mx-4 border border-gray-700" />
           <div className="px-4 py-3">
             <NetworkAndUser />
           </div>
-        </>
+          <hr className="mx-4 border border-gray-700" />
+        </div>
       )}
     </div>
   );

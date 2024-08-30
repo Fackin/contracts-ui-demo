@@ -61,11 +61,21 @@ a:focus {
 }
 
 .page-error {
-  @apply m-2 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden px-5 py-3;
+  @apply mt-2 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden px-5 py-3;
 }
 
 .page-error > div {
-  @apply grid max-w-lg place-content-center justify-items-center rounded-md border px-12 py-8 text-center text-gray-500 dark:border-gray-700;
+  @apply grid max-w-lg place-content-center justify-items-center border rounded-md px-12 py-8 text-center text-gray-500 dark:border-gray-700;
+}
+
+@media (min-width: 768px) {
+  .page-error > div {
+    border: none;
+    box-shadow: 4px 4px 10px 0 #cfcfcf;
+  }
+  .page-error > div:is(.dark *) {
+    box-shadow: 4px 4px 10px 0 #747373;
+  }
 }
 
 .page-error > div > div {

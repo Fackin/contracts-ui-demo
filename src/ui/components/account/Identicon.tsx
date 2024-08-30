@@ -49,7 +49,7 @@ function IdenticonBase({
             height={size}
             id={value ? `identicon-${value}` : undefined}
             name={value || undefined}
-            style={{ ...style, zIndex: 999 }}
+            style={{ ...style, zIndex: 0 }}
             viewBox="0 0 64 64"
             width={size}
           >

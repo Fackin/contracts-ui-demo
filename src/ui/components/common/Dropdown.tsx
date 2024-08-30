@@ -77,6 +77,7 @@ export function Dropdown<T>({
   formatOptionLabel,
   isDisabled = false,
   isSearchable = false,
+  menuPosition = 'absolute',
   onChange: _onChange,
   options = [],
   placeholder,
@@ -99,6 +100,7 @@ export function Dropdown<T>({
       components={{ Control, DropdownIndicator, Input, Option, ...components }}
       formatCreateLabel={() => undefined}
       formatOptionLabel={formatOptionLabel}
+      menuPosition={menuPosition}
       isDisabled={isDisabled}
       isSearchable={isSearchable}
       isValidNewOption={inputValue =>

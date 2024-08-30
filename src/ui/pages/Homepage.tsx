@@ -9,8 +9,8 @@ export function Homepage() {
     <RootLayout
       aside={
         <>
-          <HelpBox />
           <Statistics />
+          <HelpBox />
         </>
       }
       heading="Contracts"

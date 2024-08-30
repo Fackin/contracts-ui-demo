@@ -25,7 +25,7 @@ export type DropdownProps<T> = SimpleSpread<
   ValidFormField<T> &
     Pick<
       ReactSelectProps<DropdownOption<T>, false>,
-      'components' | 'formatOptionLabel' | 'isDisabled' | 'isSearchable' | 'options' | 'placeholder'
+      'components' | 'formatOptionLabel' | 'isDisabled' | 'isSearchable' | 'options' | 'placeholder' | 'menuPosition'
     > & { onCreate?: (input: string) => void }
 >;
 
