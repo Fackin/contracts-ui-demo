@@ -11,3 +11,4 @@ export * from './useNewContract';
 export * from './useStorageDepositLimit';
 export * from './useToggle';
 export * from './useStoredContract';
+export * from './useWallet';

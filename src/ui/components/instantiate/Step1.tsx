@@ -26,11 +26,13 @@ export function Step1() {
     [codeHashUrlParam, db],
   );
 
-  const { accounts } = useApi();
+  const { accounts, isAccountAvailable } = useApi();
   const { setStep, setData, data, step } = useInstantiate();
 
   const [accountId, setAccountId] = useState('');
-  const isAccountAvailable = useAccountAvailable(accountId);
+  // const isAccountAvailable = useAccountAvailable(accountId);
+  // console.log('isAccountAvailable', accountsAll, accountId);
+  // const isAccountAvailable = accountsAll?.some(a => a?.address === accountId);
   const { value: name, onChange: setName, ...nameValidation } = useNonEmptyString();
 
   const {
@@ -66,7 +68,7 @@ export function Step1() {
   );
 
   useEffect((): void => {
-    if (!accounts || accounts.length === 0) return;
+    if (!accounts || accounts.length === 0 || !accounts[0]) return;
     setAccountId(accounts[0].address);
   }, [accounts]);
 

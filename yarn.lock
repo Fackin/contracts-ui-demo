@@ -4010,6 +4010,7 @@ __metadata:
     "@polkadot/api": 12.4.2
     "@polkadot/api-contract": 12.4.2
     "@polkadot/extension-dapp": ^0.52.3
+    "@polkadot/keyring": ^13.0.2
     "@polkadot/ui-keyring": ^3.9.1
     "@polkadot/ui-shared": ^3.9.1
     "@tailwindcss/forms": ^0.5.7

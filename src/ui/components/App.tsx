@@ -8,12 +8,14 @@ import {
   DatabaseContextProvider,
   ThemeContextProvider,
   TransactionsContextProvider,
+  AccountProvider
 } from 'ui/contexts';
 import { Sidebar } from 'ui/layout/sidebar';
 
 export default function App() {
   return (
     <ThemeContextProvider>
+      <AccountProvider appName="Contracts App">
       <ApiContextProvider>
         <DatabaseContextProvider>
           <TransactionsContextProvider>
@@ -29,6 +31,7 @@ export default function App() {
           </TransactionsContextProvider>
         </DatabaseContextProvider>
       </ApiContextProvider>
+      </AccountProvider>
     </ThemeContextProvider>
   );
 }

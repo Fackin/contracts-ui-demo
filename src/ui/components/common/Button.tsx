@@ -37,7 +37,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) =>
           }}
         />
       )}
-      <div className={classes('flex', isLoading ? 'invisible' : '')}>{children}</div>
+      <div className={classes('w-full flex items-center', isLoading ? 'invisible' : '')}>{children}</div>
     </button>
   );
 });

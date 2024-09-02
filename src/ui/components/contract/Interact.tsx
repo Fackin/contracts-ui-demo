@@ -42,7 +42,7 @@ export const InteractTab = ({
     address,
   },
 }: Props) => {
-  const { accounts, api } = useApi();
+  const { accounts, api, isAccountAvailable } = useApi();
   const { queue, process, txs } = useTransactions();
   const [message, setMessage] = useState<AbiMessage>();
   const [argValues, setArgValues, inputData] = useArgValues(message, registry);
@@ -58,11 +58,12 @@ export const InteractTab = ({
   const proofSize = useWeight(outcome?.gasRequired.proofSize.toBn());
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
   const isCustom = refTime.mode === 'custom' || proofSize.mode === 'custom';
-  const isAccountAvailable = useAccountAvailable(accountId);
+  // const isAccountAvailable = useAccountAvailable(accountId);
+  // const isAccountAvailable = accountsAll?.some((a) => a.address === accountId);
 
   useEffect((): void => {
     if (!accounts || accounts.length === 0) return;
-    setAccountId(accounts[0].address);
+    setAccountId(accounts[0]?.address);
   }, [accounts]);
 
   useEffect(() => {

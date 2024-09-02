@@ -15,7 +15,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export function Account({ className, name: propsName, size = 42, value }: Props) {
   const { accounts } = useApi();
 
-  const account = accounts?.find(a => a.address === value);
+  const account = accounts?.find(a => a?.address === value);
   const name = propsName || account?.meta.name;
 
   if (!value) {

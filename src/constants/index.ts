@@ -8,6 +8,9 @@ export const LOCAL_STORAGE_KEY = {
   CUSTOM_ENDPOINT: 'contractsUiCustomEndpoint',
   PREFERRED_ENDPOINT: 'contractsUiPreferredEndpoint',
   THEME: 'theme',
+
+  WALLET_IDS: 'walletIds',
+  ACCOUNT_ADDRESS: 'accountAddress',
 } as const;
 
 export type LocalStorageKey = (typeof LOCAL_STORAGE_KEY)[keyof typeof LOCAL_STORAGE_KEY];
@@ -138,3 +141,18 @@ export const INIT_STATE: ApiState = {
   error: null,
   status: 'CONNECT_INIT',
 } as unknown as ApiState;
+
+
+//---------
+export const DEFAULT_INJECT_TIMEOUT_MS = 200 as const;
+
+export const WALLET_STATUS = {
+  INJECTED: 'injected',
+  CONNECTED: 'connected',
+} as const;
+
+export const VARA_SS58_FORMAT = 137;
+// export const LOCAL_STORAGE_KEY = {
+//   WALLET_IDS: 'walletIds',
+//   ACCOUNT_ADDRESS: 'accountAddress',
+// } as const;

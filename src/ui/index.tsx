@@ -2,6 +2,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { Buffer } from 'buffer';
+
+// 将 Buffer 设置为全局对象
+window.Buffer = Buffer;
+
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from 'ui/components/App';
@@ -16,6 +20,7 @@ import {
   SelectCodeHash,
   NotFound,
   AddressLookup,
+  IconPage,
 } from 'ui/pages';
 
 globalThis.Buffer = Buffer;
@@ -38,6 +43,7 @@ root.render(
           <Route path=":codeHash" />
         </Route>
         <Route element={<Contract />} path="contract/:address/" />
+        <Route element={<IconPage />} path="iconpage" />
         <Route element={<NotFound />} path="*" />
       </Route>
     </Routes>

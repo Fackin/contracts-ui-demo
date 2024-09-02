@@ -3,6 +3,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
+import { classes } from 'lib/util';
 import { Fragment, ReactNode } from 'react';
 
 export type ModalProps = {
@@ -10,9 +11,10 @@ export type ModalProps = {
   setIsOpen: (_: boolean) => void;
   title: string;
   children?: ReactNode | undefined;
+  className?: string;
 };
 
-export const ModalBase = ({ isOpen, setIsOpen, title, children }: ModalProps) => {
+export const ModalBase = ({ isOpen, setIsOpen, title, children, className }: ModalProps) => {
   function closeModal() {
     setIsOpen(false);
   }
@@ -45,7 +47,7 @@ export const ModalBase = ({ isOpen, setIsOpen, title, children }: ModalProps) =>
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="my-8 inline-block w-full  max-w-lg transform overflow-hidden rounded-xl bg-white text-left align-middle opacity-100 shadow-xl transition-all dark:bg-gray-900">
+              <div className={classes("my-8 inline-block w-full  max-w-lg transform overflow-hidden rounded-xl bg-white text-left align-middle opacity-100 shadow-xl transition-all dark:bg-gray-900", className)}>
                 <div className="flex justify-between border-b border-gray-200 dark:border-gray-800">
                   <Dialog.Title
                     as="h3"

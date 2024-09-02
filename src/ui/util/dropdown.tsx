@@ -33,8 +33,8 @@ export function createMessageOptions(
 
 export function createAccountOptions(data: Account[]): DropdownOption<string>[] {
   return data.map(pair => ({
-    label: pair.meta?.name as string,
-    value: pair.address || '',
+    label: pair?.meta?.name as string,
+    value: pair?.address || '',
   }));
 }
 

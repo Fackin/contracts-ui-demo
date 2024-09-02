@@ -6,3 +6,4 @@ export * from './contexts';
 export * from './contract';
 export * from './hooks';
 export * from './util';
+export * from './wallet';

@@ -8,3 +8,4 @@ export * from './Instantiate';
 export * from './SelectCodeHash';
 export * from './NotFound';
 export * from './AddressLookup';
+export * from './IconPage';

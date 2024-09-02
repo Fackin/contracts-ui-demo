@@ -36,6 +36,7 @@
     "@polkadot/api": "12.4.2",
     "@polkadot/api-contract": "12.4.2",
     "@polkadot/extension-dapp": "^0.52.3",
+    "@polkadot/keyring": "^13.0.2",
     "@polkadot/ui-keyring": "^3.9.1",
     "@polkadot/ui-shared": "^3.9.1",
     "big.js": "^6.2.1",

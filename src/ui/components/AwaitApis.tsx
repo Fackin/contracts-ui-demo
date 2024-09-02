@@ -7,19 +7,21 @@ import { isWeb3Injected } from '@polkadot/extension-dapp';
 import { AccountsError, ExtensionError } from './common/AccountsError';
 import { useApi, useDatabase } from 'ui/contexts';
 import { Loader, ConnectionError } from 'ui/components/common';
-import { isKeyringLoaded } from 'lib/util';
+// import { isKeyringLoaded } from 'lib/util';
+
 
 export function AwaitApis({ children }: HTMLAttributes<HTMLDivElement>): React.ReactElement {
   const { accounts, api, endpoint, status, systemChainType } = useApi();
 
   const { db } = useDatabase();
   const [message, setMessage] = useState('');
-
+  const isKeyringLoaded = () => accounts && accounts.length > 0;
+  
   useEffect(() => {
     !db && setMessage('Loading data...');
     status === 'loading' && setMessage(`Connecting to ${endpoint}...`);
     !isKeyringLoaded() && setMessage(`Loading accounts...`);
-  }, [db, endpoint, api, status]);
+  }, [db, endpoint, api, status, accounts]);
 
   if (status === 'error') {
     return <ConnectionError />;

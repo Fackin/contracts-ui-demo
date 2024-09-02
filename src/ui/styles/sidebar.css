@@ -5,7 +5,7 @@
 }
 
 .sidebar .sidebar-inner {
-  background: linear-gradient(45deg, #40d2ba, #a1e240);
+  background: linear-gradient(45deg, #40a2d2, #a1e240);
   @apply flex h-0 min-h-full flex-1 flex-row border-b border-gray-200 bg-white dark:border-gray-stroke dark:bg-elevation-1;
 }
 .sidebar .sidebar-inner:is(.dark *) {
@@ -55,11 +55,17 @@
 }
 
 .sidebar .footer {
-  @apply flex flex-shrink-0 p-6;
+  @apply flex flex-shrink-0 justify-center items-center;
 }
 
 .sidebar .footer > div {
   @apply flex w-full flex-shrink-0 justify-between;
+}
+
+.sidebar .footer .connect-btn {
+  /* font-family: Kanit,sans-serif; */
+  font-size: 14px;
+  @apply bg-green-500 text-white rounded-full px-6 py-2 border-none cursor-pointer font-bold hover:bg-green-600;
 }
 
 .mobilemenu {

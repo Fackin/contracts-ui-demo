@@ -1,7 +1,7 @@
 // Copyright 2022-2024 use-ink/contracts-ui authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { createContext, useEffect, useContext, useState } from 'react';
+import { createContext, useEffect, useContext, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { web3Accounts, web3Enable, web3EnablePromise } from '@polkadot/extension-dapp';
 import { WsProvider } from '@polkadot/api';
@@ -12,6 +12,9 @@ import { isValidWsUrl, isKeyringLoaded } from 'lib/util';
 import { useLocalStorage } from 'ui/hooks/useLocalStorage';
 import { NoticeBanner } from 'ui/components/common/NoticeBanner';
 import { getChainProperties } from 'src/services/chain/chainProps';
+
+import { useAccount } from 'ui/contexts';
+import { KeyringAddress } from '@polkadot/ui-keyring/types';
 
 // fixes internal pjs type mismatch `Type 'string' is not assignable to type '`0x${string}`'`
 export interface InjectedAccountWithMetaOverride {
@@ -35,16 +38,27 @@ export const ApiContextProvider = ({ children }: React.PropsWithChildren<Partial
   const [api, setApi] = useState({} as ApiPromise);
   const [endpoint, setEndpoint] = useState(preferredEndpoint);
   const [accounts, setAccounts] = useState<Account[]>();
+  const [accountsAll, setAccountsAll] = useState<Account[]>();
   const [chainProps, setChainProps] = useState<ChainProperties>();
   const [status, setStatus] = useState<Status>('loading');
   const [isSupported, setIsSupported] = useState(true);
   const [isEthereumChain, setIsEthereumChain] = useState(false);
 
+  const { account, wallets } = useAccount();
+
+  const isAccountAvailable = useMemo(() => {
+
+    const obj = Object.values(wallets || {}).flatMap(({ accounts }) => accounts)
+      .find((_account) => _account?.address === account?.address)
+console.log('isAccountAvailable', wallets, account, obj);
+      return obj !== undefined;
+    }, [wallets, account]);
+
   useEffect(() => {
     if (rpcUrl && isValidWsUrl(rpcUrl) && rpcUrl !== preferredEndpoint) {
       setEndpoint(rpcUrl);
       setPreferredEndpoint(rpcUrl);
-      window.location.reload();
+      // window.location.reload();
     }
   }, [preferredEndpoint, rpcUrl, searchParams, setPreferredEndpoint]);
 
@@ -66,13 +80,14 @@ export const ApiContextProvider = ({ children }: React.PropsWithChildren<Partial
     _api.on('disconnected', () => {
       setStatus('error');
     });
-  }, [endpoint]);
+  }, [endpoint, account]);
 
   useEffect(() => {
     const getAccounts = async () => {
       if (status === 'connected' && chainProps) {
         !web3EnablePromise && (await web3Enable('contracts-ui'));
         const accounts = await web3Accounts();
+        console.log('loading accounts', accounts, account);
         isKeyringLoaded() ||
           keyring.loadAll(
             {
@@ -81,17 +96,22 @@ export const ApiContextProvider = ({ children }: React.PropsWithChildren<Partial
             },
             accounts as InjectedAccountWithMetaOverride[],
           );
-        setAccounts(keyring.getAccounts());
+          console.log('loading accounts', keyring.getAccounts());
+        // setAccounts(keyring.getAccounts());
+        setAccountsAll(keyring.getAccounts());
+        setAccounts([account as unknown as KeyringAddress]);
       }
     };
     getAccounts().catch(e => console.error(e));
-  }, [chainProps, isEthereumChain, status]);
+  }, [chainProps, isEthereumChain, status, account]);
 
   return (
     <ApiContext.Provider
       value={{
         api,
         accounts,
+        accountsAll,
+        isAccountAvailable,
         setEndpoint,
         endpoint,
         status,
