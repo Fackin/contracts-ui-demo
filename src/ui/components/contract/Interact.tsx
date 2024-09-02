@@ -22,13 +22,13 @@ import {
   UIContract,
 } from 'types';
 import { AccountSelect } from 'ui/components/account';
-import { Button, Buttons, Dropdown } from 'ui/components/common';
+import { Button, Buttons } from 'ui/components/common';
 import { ArgumentForm, Form, FormField, OptionsForm } from 'ui/components/form';
 import { useApi, useTransactions } from 'ui/contexts';
 import { useArgValues, useBalance, useWeight } from 'ui/hooks';
 // import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
 import { useStorageDepositLimit } from 'ui/hooks/useStorageDepositLimit';
-import { createMessageOptions } from 'ui/util/dropdown';
+// import { createMessageOptions } from 'ui/util/dropdown';
 import { classes } from 'lib/util';
 import { MessageSignature } from '../message/MessageSignature';
 
