@@ -29,6 +29,8 @@ import { useArgValues, useBalance, useWeight } from 'ui/hooks';
 // import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
 import { useStorageDepositLimit } from 'ui/hooks/useStorageDepositLimit';
 import { createMessageOptions } from 'ui/util/dropdown';
+import { classes } from 'lib/util';
+import { MessageSignature } from '../message/MessageSignature';
 
 interface Props {
   contract: UIContract;
@@ -60,6 +62,8 @@ export const InteractTab = ({
   const isCustom = refTime.mode === 'custom' || proofSize.mode === 'custom';
   // const isAccountAvailable = useAccountAvailable(accountId);
   // const isAccountAvailable = accountsAll?.some((a) => a.address === accountId);
+
+  const [isShowDetail, setIsShowDetail] = useState(false);
 
   useEffect((): void => {
     if (!accounts || accounts.length === 0) return;
@@ -190,84 +194,161 @@ export const InteractTab = ({
   const isDispatchable = message?.isMutating || message?.isPayable;
 
   return (
-    <div className="grid w-full grid-cols-12">
-      <div className="col-span-6 w-full rounded-lg lg:col-span-6 2xl:col-span-7">
-        <Form key={`${address}`}>
-          <FormField
-            className="caller mb-8"
-            help="The sending account for this interaction. Any transaction fees will be deducted from this account."
-            id="accountId"
-            isError={isAccountAvailable === false}
-            label="Caller"
-            message="Selected Account is not available to sign extrinsics."
-          >
-            <AccountSelect
-              className="mb-2"
+    <>
+      <div className={classes("grid w-full grid-cols-12", !isShowDetail ? 'block' : 'hidden')} >
+        <div className="col-span-6 w-full rounded-lg lg:col-span-6 2xl:col-span-7" >
+          <Form key={`${address}`}>
+            <FormField
+              className="caller mb-8"
+              help="The sending account for this interaction. Any transaction fees will be deducted from this account."
               id="accountId"
-              onChange={setAccountId}
-              value={accountId}
-            />
-          </FormField>
-          <FormField
-            help="The message to send to this contract. Parameters are adjusted based on the stored contract metadata."
-            id="message"
-            label="Message to Send"
-          >
-            <Dropdown
-              className="constructorDropdown mb-4"
-              id="message"
-              onChange={(m?: AbiMessage) => {
-                m?.identifier !== message?.identifier && setOutcome(undefined);
-                setMessage(m);
-              }}
-              options={createMessageOptions(registry, abi.messages)}
-              value={message}
+              isError={isAccountAvailable === false}
+              label="Caller"
+              message="Selected Account is not available to sign extrinsics."
             >
-              No messages found
-            </Dropdown>
-            {argValues && (
-              <ArgumentForm
-                argValues={argValues}
-                args={message?.args ?? []}
-                registry={registry}
-                setArgValues={setArgValues}
+              <AccountSelect
+                className="mb-2"
+                id="accountId"
+                onChange={setAccountId}
+                value={accountId}
+              />
+            </FormField>
+            <FormField
+              help="The message to send to this contract. Parameters are adjusted based on the stored contract metadata."
+              id="message"
+              label="Message to Send"
+            >
+              {/* <Dropdown
+                className="constructorDropdown mb-4"
+                id="message"
+                onChange={(m?: AbiMessage) => {
+                  setIsShowDetail(true);
+                  m?.identifier !== message?.identifier && setOutcome(undefined);
+                  setMessage(m);
+                }}
+                options={createMessageOptions(registry, abi.messages)}
+                value={message}
+              >
+                No messages found
+              </Dropdown> */}
+              {(abi.messages).map(m => (
+                <div 
+                  className='mt-2 cursor-pointer hover:text-blue-500 text-sm border border-gray-300 p-4 rounded-lg'
+                  onClick={() => {
+                    setIsShowDetail(true);
+                    m?.identifier !== message?.identifier && setOutcome(undefined);
+                    setMessage(m);
+                  }}>
+                  <MessageSignature message={m} registry={registry} />
+                </div>
+              ))}
+
+
+              {/* {argValues && (
+                <ArgumentForm
+                  argValues={argValues}
+                  args={message?.args ?? []}
+                  registry={registry}
+                  setArgValues={setArgValues}
+                />
+              )} */}
+            </FormField>
+
+            {/* {isDispatchable && (
+              <OptionsForm
+                isPayable={!!message.isPayable}
+                proofSize={proofSize}
+                refTime={refTime}
+                storageDepositLimit={storageDepositLimit}
+                value={valueState}
+              />
+            )} */}
+          </Form>
+          {/* <Buttons>
+            {isDispatchable && (
+              <Button
+                isDisabled={callDisabled}
+                isLoading={txs[txId]?.status === 'processing'}
+                onClick={call}
+                variant="primary"
+              >
+                Call contract
+              </Button>
+            )}
+          </Buttons> */}
+        </div>
+        {/* <div className="col-span-6 w-full pl-10 lg:col-span-6 lg:pl-20 2xl:col-span-5">
+          {message && (
+            <ResultsOutput
+              message={message}
+              outcome={outcome}
+              registry={registry}
+              results={callResults}
+            />
+          )}
+        </div> */}
+      </div>
+      <div className={isShowDetail ? 'grid w-full grid-cols-12' : 'hidden'}>
+        <div className="col-span-6 w-full rounded-lg lg:col-span-6 2xl:col-span-7">
+          <Form key={`${address}`}>
+            <FormField
+              help="The message to send to this contract. Parameters are adjusted based on the stored contract metadata."
+              id="message"
+              label="Message to Send"
+            >
+              <div className='border border-gray-300 p-4 rounded-lg'>
+                {message && <MessageSignature message={message} registry={registry} />}
+              </div>
+              {argValues && (
+                <ArgumentForm
+                  argValues={argValues}
+                  args={message?.args ?? []}
+                  registry={registry}
+                  setArgValues={setArgValues}
+                />
+              )}
+            </FormField>
+
+            {isDispatchable && (
+              <OptionsForm
+                isPayable={!!message.isPayable}
+                proofSize={proofSize}
+                refTime={refTime}
+                storageDepositLimit={storageDepositLimit}
+                value={valueState}
               />
             )}
-          </FormField>
-
-          {isDispatchable && (
-            <OptionsForm
-              isPayable={!!message.isPayable}
-              proofSize={proofSize}
-              refTime={refTime}
-              storageDepositLimit={storageDepositLimit}
-              value={valueState}
+          </Form>
+          <Buttons>
+            {isDispatchable && (
+              <Button
+                isDisabled={callDisabled}
+                isLoading={txs[txId]?.status === 'processing'}
+                onClick={call}
+                variant="primary"
+              >
+                Call contract
+              </Button>
+            )}
+            <Button
+              onClick={()=>setIsShowDetail(false)}
+              variant="default"
+            >
+              Back
+            </Button>
+          </Buttons>
+        </div>
+        <div className="col-span-6 w-full pl-10 lg:col-span-6 lg:pl-20 2xl:col-span-5">
+          {message && (
+            <ResultsOutput
+              message={message}
+              outcome={outcome}
+              registry={registry}
+              results={callResults}
             />
           )}
-        </Form>
-        <Buttons>
-          {isDispatchable && (
-            <Button
-              isDisabled={callDisabled}
-              isLoading={txs[txId]?.status === 'processing'}
-              onClick={call}
-              variant="primary"
-            >
-              Call contract
-            </Button>
-          )}
-        </Buttons>
+        </div>
       </div>
-      <div className="col-span-6 w-full pl-10 lg:col-span-6 lg:pl-20 2xl:col-span-5">
-        {message && (
-          <ResultsOutput
-            message={message}
-            outcome={outcome}
-            registry={registry}
-            results={callResults}
-          />
-        )}
-      </div>
-    </div>
-  );
+    </>
+  )
 };

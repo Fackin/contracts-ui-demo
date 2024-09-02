@@ -22,7 +22,7 @@ export function Tabs({ children, index, setIndex, tabs }: Props) {
     <>
       <div className="grid w-full grid-cols-12">
         <ul
-          className="routed-tabs col-span-6 lg:col-span-7 2xl:col-span-8"
+          className="routed-tabs col-span-12"
           data-cy="contract-page-tabs"
         >
           {tabs.map(({ id, label }, tabIndex) => {
