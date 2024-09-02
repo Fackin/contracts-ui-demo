@@ -1,7 +1,7 @@
 // Copyright 2022-2024 use-ink/contracts-ui authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { Button, Buttons } from '../common';
+import { Button } from '../common';
 import type { ModalProps } from './ModalBase';
 import { ModalBase as Modal } from './ModalBase';
 import { useAccount } from 'ui/contexts';

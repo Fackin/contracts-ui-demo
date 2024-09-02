@@ -26,7 +26,7 @@ import { Button, Buttons, Dropdown } from 'ui/components/common';
 import { ArgumentForm, Form, FormField, OptionsForm } from 'ui/components/form';
 import { useApi, useTransactions } from 'ui/contexts';
 import { useArgValues, useBalance, useWeight } from 'ui/hooks';
-import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
+// import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
 import { useStorageDepositLimit } from 'ui/hooks/useStorageDepositLimit';
 import { createMessageOptions } from 'ui/util/dropdown';
 

@@ -16,7 +16,7 @@ import { useNonEmptyString } from 'ui/hooks/useNonEmptyString';
 
 import { fileToFileState } from 'lib/fileToFileState';
 import { getContractFromPatron } from 'lib/getContractFromPatron';
-import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
+// import { useAccountAvailable } from 'ui/hooks/useAccountAvailable';
 
 export function Step1() {
   const { codeHash: codeHashUrlParam } = useParams<{ codeHash: string }>();

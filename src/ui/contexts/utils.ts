@@ -1,7 +1,7 @@
 import { InjectedAccount, InjectedWindowProvider, InjectedWindow, Unsubcall } from '@polkadot/extension-inject/types';
 import { Signer } from '@polkadot/types/types';
 
-import { LOCAL_STORAGE_KEY, WALLET_STATUS, VARA_SS58_FORMAT } from '../../constants';
+import { LOCAL_STORAGE_KEY, WALLET_STATUS } from '../../constants';
 import { AccountG as Account, Wallet, Wallets } from '../../types';
 
 import { HexString } from '@polkadot/util/types';
