@@ -49,7 +49,7 @@ export function CodeHash({
   return (
     <div
       className={classes(
-        'group flex items-center rounded border p-4 dark:border-gray-700 dark:bg-elevation-1',
+        'group flex items-center rounded-xl bg-white border p-4 dark:border-gray-700 dark:bg-elevation-1',
         isOnChain &&
           onClick &&
           'cursor-pointer dark:hover:border-blue-500 dark:hover:bg-blue-700 dark:hover:bg-opacity-10',

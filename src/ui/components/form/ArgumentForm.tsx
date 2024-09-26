@@ -43,7 +43,7 @@ export function ArgumentForm({ args, argValues, registry, setArgValues, classNam
             }
           >
             <Component
-              className="w-full rounded border-gray-200 bg-white text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
+              className="w-full rounded-xl border-gray-200 bg-white text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
               id={arg.name}
               nestingNumber={0}
               onChange={onChange}

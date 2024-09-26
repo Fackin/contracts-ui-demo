@@ -33,7 +33,7 @@ export function Input({
     <div className={classes(isError && 'isError', 'w-full')}>
       <input
         className={classes(
-          'w-full rounded border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300',
+          'w-full rounded-xl shadow-sm h-10 border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300',
           isDisabled && 'dark:text-gray-500',
           className,
         )}

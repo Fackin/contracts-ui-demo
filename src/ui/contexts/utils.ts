@@ -7,6 +7,7 @@ import { AccountG as Account, Wallet, Wallets } from '../../types';
 import { HexString } from '@polkadot/util/types';
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
+import { web3Accounts, web3Enable, web3EnablePromise } from '@polkadot/extension-dapp';
 
 export function decodeAddress(publicKey: string): HexString {
   return u8aToHex(new Keyring().decodeAddress(publicKey));
@@ -63,6 +64,7 @@ const getConnectedWallet = async (
   registerUnsub: (unsub: Unsubcall) => void,
 ) => {
   try {
+    console.log('getConnectedWallet');
     const connect = wallet.connect || wallet.enable;
 
     if (!connect) throw new Error('Connection method is not found');
@@ -72,6 +74,7 @@ const getConnectedWallet = async (
 
     // if auth popup closed/rejected,
     // polkadot-js extension will not resolve promise at all
+    console.log('connecting to wallet: ', id, origin);
     const connectedWallet = await connect(origin);
     const { signer } = connectedWallet;
 
@@ -86,12 +89,46 @@ const getConnectedWallet = async (
 
     registerUnsub(accountsUnsub);
 
+    const reConnect = async () => {
+      // return getConnectedWallet(origin, id, wallet, onAccountsChange, registerUnsub);
+      // const connect = wallet.enable;
+      // if (!connect) throw new Error('Connection method is not found');
+      // console.log('reConnect to wallet: ', id, origin);
+      // const connectedWallet = await connect(origin);
+      // console.log('reConnectedWallet: ', connectedWallet);
+      // const { signer } = connectedWallet;
+      // const accountsUnsub = connectedWallet.accounts.subscribe((result) =>
+      //   onAccountsChange(id, getAccounts(id, signer, result)),
+      // );
+      // registerUnsub(accountsUnsub);
+
+      // !web3EnablePromise && (await web3Enable('contracts-ui'));
+      const allInjected = await web3Enable('contracts-ui')
+      console.log('已启用的钱包插件:', allInjected);
+
+      // 筛选出特定的插件，例如 Polkadot.js 插件
+      const polkadotJsWallet = allInjected.find(injected => injected.name === 'polkadot-js');
+
+      if (polkadotJsWallet) {
+        console.log('Polkadot.js 插件已找到:', polkadotJsWallet);
+
+        // 获取该插件中的账户
+        const accounts = await web3Accounts();
+        console.log('已授权账户:', accounts);
+      } else {
+        console.log('未找到 Polkadot.js 插件。');
+      }
+      // const accounts = await web3Accounts();
+      // console.log('loading accounts', accounts);
+    }
+
     return {
       id,
       version,
       status,
       accounts,
       connect: () => Promise.reject(new Error('Wallet is already connected')),
+      reConnect,
     };
   } catch (error) {
     console.error('Error while connecting wallet: ', error);
@@ -110,9 +147,10 @@ const getInjectedWallet = (
   const status = WALLET_STATUS.INJECTED;
 
   const connect = async () => {
+    console.log('connect: ', id, origin);
     const connectedWallet = await getConnectedWallet(origin, id, wallet, onAccountsChange, registerUnsub);
     if (!connectedWallet) return;
-
+    console.log('connectedWallet: ', connectedWallet);
     addLocalStorageWalletId(id);
     onConnect(id, connectedWallet);
   };
@@ -145,4 +183,20 @@ const getWallets = async (
   return Object.fromEntries(await Promise.all(promiseEntries));
 };
 
-export { getWallets, getLoggedInAccount };
+const reConnectWalletById = async (id: string, origin: string,
+  onAccountsChange: (_id: string, value: Account[]) => void,
+  onWalletConnect: (_id: string, _wallet: Wallet) => void,
+  registerUnsub: (unsub: Unsubcall) => void,) => {
+  // const { injectedWeb3 } = window as unknown as InjectedWindow;
+  // if (!injectedWeb3) return;
+  // const wallet = injectedWeb3[id];
+  // return getConnectedWallet(origin, id, wallet, onAccountsChange, registerUnsub);
+  const { injectedWeb3 } = window as unknown as InjectedWindow;
+  if (!injectedWeb3) return {};
+
+  // const promiseEntries = getInjectedWallet(origin, id, injectedWeb3[id], onAccountsChange, onWalletConnect, registerUnsub);
+
+  return await getInjectedWallet(origin, id, injectedWeb3[id], onAccountsChange, onWalletConnect, registerUnsub);
+}
+
+export { getWallets, getLoggedInAccount, reConnectWalletById };

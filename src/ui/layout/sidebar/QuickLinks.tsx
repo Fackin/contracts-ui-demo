@@ -3,10 +3,10 @@
 
 import { DocumentTextIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
-// import { NavLink } from './NavLink';
+import { NavLink } from './NavLink';
 import { useDatabase } from 'ui/contexts';
 import { useDbQuery } from 'ui/hooks';
-import { Dropdown } from 'ui/components';
+// import { Dropdown } from 'ui/components';
 import { useNavigate } from 'react-router';
 // import {
 //   components,
@@ -30,16 +30,16 @@ export function QuickLinks() {
   //   {name: '4353er', address: '9242423424334234234234'}
   // ]
 
-  const dropdownOptions = (contracts || []).map(network => ({
-    // label: network.name,
-    label: (
-      <>
-        <DocumentTextIcon aria-hidden="true" className="h-5 w-5 text-gray-500 inline" />
-        <span>{network.name}</span>
-      </>
-    ),
-    value: network.address,
-  }));
+  // const dropdownOptions = (contracts || []).map(network => ({
+  //   // label: network.name,
+  //   label: (
+  //     <>
+  //       <DocumentTextIcon aria-hidden="true" className="h-5 w-5 text-gray-500 inline" />
+  //       <span>{network.name}</span>
+  //     </>
+  //   ),
+  //   value: network.address,
+  // }));
 
 
 // function Control<T>(props: ControlProps<DropdownOption<T>, false>) {
@@ -61,27 +61,27 @@ export function QuickLinks() {
       <div className="section your-contracts">
         <div className="header text-gray-400 mr-2">Your Contracts</div>
         {contracts && contracts.length > 0 ? (
-          // <div className=''>
-          //   {
-          //     contracts.map(({ name, address }) => {
-          //       return (
-          //         <NavLink icon={DocumentTextIcon} key={address} to={`/contract/${address}`}>
-          //           {name}
-          //         </NavLink>
-          //       );
-          //     })
-          //   }
-          // </div>
-          <Dropdown
-            menuPosition="fixed"
-            className='min-w-40'
-            onChange={e => {
-              navigate(`/contract/${e}`);
-            }}
-            placeholder=""
-            options={dropdownOptions}
-            value={''}
-          />
+          <div className='quick-links-tags'>
+            {
+              contracts.map(({ name, address }) => {
+                return (
+                  <NavLink icon={DocumentTextIcon} key={address} to={`/contract/${address}`}>
+                    {name}
+                  </NavLink>
+                );
+              })
+            }
+          </div>
+          // <Dropdown
+          //   menuPosition="fixed"
+          //   className='min-w-40'
+          //   onChange={e => {
+          //     navigate(`/contract/${e}`);
+          //   }}
+          //   placeholder=""
+          //   options={dropdownOptions}
+          //   value={''}
+          // />
         ) : (
           <div className="none-yet text-gray-400">
             None yet&nbsp;

@@ -8,7 +8,7 @@ export function RootLayout({ accessory, heading, help, children, aside }: PagePr
   return (
     <section
       className={classes(
-        'w-full overflow-y-auto p-10',
+        'w-full overflow-y-auto p-10 bg-gray-100 dark:bg-transparent',
         aside && 'flex flex-col gap-10',
       )}
     >
@@ -16,7 +16,7 @@ export function RootLayout({ accessory, heading, help, children, aside }: PagePr
         <header className="mb-10 space-y-1 border-b border-gray-200 pb-6 dark:border-gray-800">
           {accessory && <div className="float-right">{accessory}</div>}
           <h1 className="capitalize">{heading}</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{help}</p>
+          <div className="text-sm text-gray-500 dark:text-gray-400">{help}</div>
         </header>
 
         <div className="flex h-full flex-col">{children}</div>

@@ -40,7 +40,7 @@ export function HeaderButtons({ contract: { address, codeHash } }: Props) {
       <div className="inline-flex h-8">
         {isOnChain ? (
           <Link to={`/instantiate/${codeHash}`}>
-            <button className="mr-2 flex h-full items-center rounded border px-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2">
+            <button className="mr-2 flex h-full items-center rounded bg-white border px-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2">
               <ArrowCircleRightIcon
                 aria-hidden="true"
                 className="mr-1 w-4 justify-self-end dark:text-gray-500"
@@ -55,13 +55,13 @@ export function HeaderButtons({ contract: { address, codeHash } }: Props) {
           )}`}</p>
         )}
         <button
-          className="flex h-full items-center rounded border px-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
+          className="flex h-full items-center rounded bg-white border px-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
           onClick={() => {
             setIsOpen(true);
           }}
           title="Forget contract"
         >
-          <TrashIcon className="w-4 dark:text-gray-500 " />
+          <TrashIcon className="w-4 text-red-500 dark:text-gray-500 " />
         </button>
       </div>
       <ForgetContractModal confirm={forgetContract} isOpen={isOpen} setIsOpen={setIsOpen} />

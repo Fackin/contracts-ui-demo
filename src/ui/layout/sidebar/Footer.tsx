@@ -46,7 +46,7 @@ export function Footer() {
           Help &amp; Feedback
         </a> */}
         <Buttons>
-          {isAccountReady &&
+          {(isAccountReady || true) &&
             (account ? (
               <AccountButton
                 className="connect-btn px-2 dark:text-white"

@@ -60,13 +60,14 @@ export const MetadataTab = ({ id, abi }: Props) => {
           />
         </FormField>
         <Button
-          className="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2 text-gray-500 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:enabled:hover:bg-elevation-2"
+          className="flex items-center justify-between rounded-full border border-gray-200 px-3 py-2 bg-white text-gray-500 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:enabled:hover:bg-elevation-2"
           isDisabled={!isSupplied || !isValid}
           onClick={async () => {
             if (!metadata || !id) throw new Error('Unable to update metadata.');
             await db.contracts.update(id, { abi: metadata.json });
             onRemove();
           }}
+          variant="primary"
         >
           Update metadata
         </Button>

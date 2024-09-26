@@ -139,3 +139,11 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+
+.add-contract .link-item {
+  @apply mb-2 flex items-center justify-center rounded-lg border border-gray-200 px-6 py-4 text-gray-500 bg-white hover:shadow-lg hover:-translate-x-1 hover:-translate-y-1 dark:border-gray-700 dark:bg-elevation-1 dark:hover:bg-elevation-2;
+}
+.add-contract .link-item:is(.dark *) {
+  --tw-shadow-color: red;
+}

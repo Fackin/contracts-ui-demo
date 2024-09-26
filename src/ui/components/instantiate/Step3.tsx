@@ -86,7 +86,7 @@ export function Step3() {
           <div className="field full">
             <p className="key">Data</p>
             <textarea
-              className="value w-full bg-transparent text-sm"
+              className="value w-full bg-transparent text-sm rounded-xl border-gray-300"
               readOnly
               rows={4}
               value={txs[txId]?.extrinsic.args[3].toHex()}
@@ -103,6 +103,7 @@ export function Step3() {
             setTxId(0);
             setStep(2);
           }}
+          variant="default"
         >
           Go Back
         </Button>

@@ -19,12 +19,12 @@ export const ForgetContractModal = ({ isOpen, setIsOpen, confirm }: Omit<Props, 
           access to the contract on this browser.
         </p>
         <button
-          className="h-full items-center rounded border p-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
+          className="h-full flex items-center rounded-full border p-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
           onClick={() => confirm()}
           title="Forget contract"
         >
           <p className="mr-2 text-xs">Forget contract</p>
-          <TrashIcon className="mr-1 w-4 justify-self-end dark:text-gray-500" />
+          <TrashIcon className="mr-1 w-4 text-red-500 justify-self-end dark:text-gray-500" />
         </button>
       </div>
     </Modal>

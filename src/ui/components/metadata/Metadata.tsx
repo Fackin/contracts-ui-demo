@@ -12,7 +12,7 @@ export function Metadata({ metadata, className = '', ...restOfProps }: Props) {
   return (
     <div
       className={classes(
-        'inline-flex grid grid-cols-2 items-center gap-2 rounded border border-gray-200 p-3 text-sm text-gray-900 dark:border-gray-700 dark:bg-elevation-1 dark:text-white',
+        'inline-flex grid grid-cols-2 items-center gap-2 rounded-xl border border-gray-200 p-3 text-sm text-gray-900 bg-white dark:border-gray-700 dark:bg-elevation-1 dark:text-white',
         className,
       )}
       {...restOfProps}

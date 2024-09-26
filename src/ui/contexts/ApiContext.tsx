@@ -64,6 +64,9 @@ console.log('isAccountAvailable', wallets, account, obj);
 
   useEffect((): void => {
     setStatus('loading');
+    console.log('==================loading api 111============')
+    console.log(endpoint, account)
+    console.log('==================loading api 222============')
     const wsProvider = new WsProvider(endpoint);
     const _api = new ApiPromise({ provider: wsProvider });
     _api.on('connected', async () => {

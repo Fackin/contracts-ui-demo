@@ -31,13 +31,13 @@ export const ForgetAllContractsModal = ({ isOpen, setIsOpen, confirm }: Omit<Pro
           to these contracts from your browser.
         </p>
         <button
-          className="flex h-full items-center justify-self-end rounded border p-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
+          className="flex h-full items-center justify-self-end rounded-full border p-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
           disabled={isBusy}
           onClick={onConfirm}
           title="Forget contract"
         >
           <p className="mr-2 text-xs">Forget All Contracts</p>
-          <TrashIcon className="mr-1 w-4 justify-self-end dark:text-gray-500" />
+          <TrashIcon className="mr-1 w-4 justify-self-end text-red-500 dark:text-gray-500" />
         </button>
       </div>
     </Modal>

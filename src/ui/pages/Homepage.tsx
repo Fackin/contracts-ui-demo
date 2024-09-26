@@ -9,13 +9,14 @@ export function Homepage() {
     <RootLayout
       aside={
         <>
-          <Statistics />
-          <HelpBox />
+          {/* <Statistics />
+          <HelpBox /> */}
         </>
       }
       heading="Contracts"
     >
       <Contracts />
+      <Statistics />
     </RootLayout>
   );
 }

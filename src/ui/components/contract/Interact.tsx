@@ -233,7 +233,8 @@ export const InteractTab = ({
               </Dropdown> */}
               {(abi.messages).map(m => (
                 <div 
-                  className='mt-2 cursor-pointer hover:text-blue-500 text-sm border border-gray-300 p-4 rounded-lg'
+                  key={m.identifier}
+                  className='mt-2 cursor-pointer hover:text-blue-500 text-sm border border-gray-300 p-4 rounded-lg bg-white dark:bg-transparent'
                   onClick={() => {
                     setIsShowDetail(true);
                     m?.identifier !== message?.identifier && setOutcome(undefined);
@@ -290,13 +291,13 @@ export const InteractTab = ({
       </div>
       <div className={isShowDetail ? 'grid w-full grid-cols-12' : 'hidden'}>
         <div className="col-span-6 w-full rounded-lg lg:col-span-6 2xl:col-span-7">
-          <Form key={`${address}`}>
+          <Form key={`${address}1`}>
             <FormField
               help="The message to send to this contract. Parameters are adjusted based on the stored contract metadata."
               id="message"
               label="Message to Send"
             >
-              <div className='border border-gray-300 p-4 rounded-lg'>
+              <div className='border border-gray-300 p-4 rounded-lg bg-white dark:bg-transparent'>
                 {message && <MessageSignature message={message} registry={registry} />}
               </div>
               {argValues && (

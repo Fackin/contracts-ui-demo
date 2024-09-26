@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export const SidePanel = ({ children, className, header, emptyView = '' }: Props) => {
   return (
     <div
-      className={classes('mb-8 rounded-md border border-gray-200 dark:border-gray-700', className)}
+      className={classes('mb-8 rounded-md border border-gray-200 bg-white dark:bg-transparent dark:border-gray-700', className)}
     >
       <div className="rounded-t-md border-b border-gray-200 p-4 text-sm text-gray-600 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300">
         {header}

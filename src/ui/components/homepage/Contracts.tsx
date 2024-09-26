@@ -35,19 +35,19 @@ export function Contracts(): React.ReactElement | null {
     <>
       <ForgetAllContractsModal confirm={forgetAllContracts} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
-        <div className="w-auto border-collapse overflow-hidden rounded border border-gray-200 dark:border-gray-700">
+        <div className="w-auto border-collapse overflow-hidden rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-transparent">
           {contracts?.map(contract => {
             return <ContractRow contract={contract} key={`contract-${contract.address}`} />;
           })}
         </div>
         <div className="grid justify-items-end pt-4">
           <button
-            className="flex h-full items-center rounded border p-3 font-semibold text-gray-600 hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
+            className="flex h-full items-center rounded-full border p-3 font-semibold text-gray-600 bg-white hover:text-gray-400 dark:border-gray-700 dark:bg-elevation-1 dark:text-gray-300 dark:hover:bg-elevation-2"
             onClick={() => setIsOpen(true)}
             title="Forget All Contracts"
           >
             <p className="mr-2 text-xs">Forget All Contracts</p>
-            <TrashIcon className="mr-1 w-4 justify-self-end dark:text-gray-500" />
+            <TrashIcon className="mr-1 w-4 justify-self-end text-red-500 dark:text-gray-500" />
           </button>
         </div>
       </div>

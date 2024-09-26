@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import { ProviderProps } from '../../types';
 import { LOCAL_STORAGE_KEY, DEFAULT_INJECT_TIMEOUT_MS } from '../../constants';
 import { AccountG as Account, Wallet, Wallets } from '../../types';
-import { getLoggedInAccount, getWallets } from '../contexts/utils';
+import { getLoggedInAccount, getWallets, reConnectWalletById } from '../contexts/utils';
 
 type Value = {
   wallets: Wallets | undefined;
@@ -13,6 +13,7 @@ type Value = {
   isAccountReady: boolean;
   login: (account: Account) => void;
   logout: () => void;
+  reConnectWallet: (id: string) => void;
 };
 
 const DEFAULT_VALUE = {
@@ -22,6 +23,7 @@ const DEFAULT_VALUE = {
   isAccountReady: false,
   login: () => {},
   logout: () => {},
+  reConnectWallet: () => {},
 } as const;
 
 const AccountContext = createContext<Value>(DEFAULT_VALUE);
@@ -58,7 +60,7 @@ function AccountProvider({ appName, children }: Props) {
 
     setAccount((prevAccount) => {
       console.log('setAccount', id, accounts, prevAccount)
-      if (!prevAccount || id !== prevAccount.meta.source) return;
+      if (!prevAccount || id !== prevAccount.meta.source) return prevAccount;
 
       const isLoggedIn = Boolean(accounts.length) && accounts.some(({ address }) => address === prevAccount.address);
 
@@ -70,6 +72,14 @@ function AccountProvider({ appName, children }: Props) {
     setWallets((prevWallets) => (prevWallets ? { ...prevWallets, [id]: wallet } : prevWallets));
 
   const registerUnsub = (unsub: Unsubcall) => unsubsRef.current.push(unsub);
+
+  const reConnectWallet = (id: string) => {
+    reConnectWalletById(id, appName, handleAccountsChange, handleWalletChange, registerUnsub).then((result) => {
+      console.log('getWallets', result, getLoggedInAccount(result))
+      setWallets(result);
+      setAccount(getLoggedInAccount(result));
+    });
+  }
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -90,7 +100,7 @@ function AccountProvider({ appName, children }: Props) {
   }, []);
 
   const value = useMemo(
-    () => ({ wallets, account, isAnyWallet, isAccountReady, login, logout }),
+    () => ({ wallets, account, isAnyWallet, isAccountReady, login, logout, reConnectWallet }),
     [wallets, account, isAnyWallet, isAccountReady],
   );
 

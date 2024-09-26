@@ -16,14 +16,14 @@ export function AddContract() {
         </>
       }
     >
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 add-contract">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <div className="mt-4">
             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="mt-4 flex justify-between gap-2 flex-col md:flex-row">
                   <Link
-                    className="mb-2 flex items-center justify-center rounded-md border border-gray-200 px-6 py-4 text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:bg-elevation-1 dark:hover:bg-elevation-2"
+                    className="link-item"
                     to="/instantiate"
                   >
                     <div className="flex flex-col items-center space-x-2 text-base text-gray-500 dark:text-gray-300">
@@ -33,7 +33,7 @@ export function AddContract() {
                     {/* <ChevronRightIcon className="h-6 w-6 text-gray-400 dark:text-gray-500" /> */}
                   </Link>
                   <Link
-                    className="mb-2 flex items-center justify-center rounded-md border border-gray-200 px-6 py-4 text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:bg-elevation-1 dark:hover:bg-elevation-2"
+                    className="link-item"
                     to="/hash-lookup"
                   >
                     <div className="flex flex-col items-center space-x-2 text-base text-gray-500 dark:text-gray-300">
@@ -43,7 +43,7 @@ export function AddContract() {
                     {/* <ChevronRightIcon className="h-6 w-6 text-gray-400 dark:text-gray-500" /> */}
                   </Link>
                   <Link
-                    className="mb-2 flex items-center justify-center rounded-md border border-gray-200 px-6 py-4 text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:bg-elevation-1 dark:hover:bg-elevation-2"
+                    className="link-item "
                     to="/address-lookup"
                   >
                     <div className="flex flex-col items-center space-x-2 text-base text-gray-500 dark:text-gray-300">

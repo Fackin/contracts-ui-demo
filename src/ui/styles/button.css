@@ -1,5 +1,5 @@
 .btn {
-  @apply flex items-center justify-center rounded px-4 py-2 text-xs font-semibold disabled:cursor-not-allowed disabled:opacity-60;
+  @apply flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold disabled:cursor-not-allowed disabled:opacity-60;
 }
 
 .btn.plain {
@@ -7,7 +7,7 @@
 }
 
 .btn.default:not(:disabled) {
-  @apply border border-gray-200 bg-gray-100 text-gray-600 hover:bg-gray-200 dark:border-gray-700 dark:bg-elevation-3 dark:text-gray-300 dark:hover:bg-elevation-1;
+  @apply border border-gray-200 bg-white text-gray-600 hover:bg-gray-200 dark:border-gray-700 dark:bg-elevation-3 dark:text-gray-300 dark:hover:bg-elevation-1;
 }
 
 .btn.primary {

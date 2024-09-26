@@ -19,7 +19,7 @@ export function Transactions({
         return (
           <div key={`notification-${id}`}>
             <div
-              className="flex max-w-full items-center bg-gray-200 p-3 text-gray-600 dark:bg-elevation-2 dark:text-white"
+              className="flex max-w-full items-center rounded-xl shadow-sm bg-white p-3 text-gray-600 dark:bg-elevation-2 dark:text-white"
               data-cy="transaction-queued"
               key={id}
             >
