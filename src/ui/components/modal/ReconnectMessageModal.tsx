@@ -1,7 +1,7 @@
 
 import type { ModalProps } from './ModalBase';
 import { ModalBase as Modal } from './ModalBase';
-// import Pol1 from '../../assets/pol-1.png';
+import Pol1 from '../../assets/pol-1.png';
 import Pol2 from 'ui/assets/pol-2.png';
 import Sub1 from '../../assets/sub-1.png';
 import Sub2 from 'ui/assets/sub-2.png';
@@ -19,7 +19,7 @@ export const ReconnectMessageModal = ({ isOpen, setIsOpen, type }: Omit<Props, '
         {
           type === 'Polkadot JS' ?
             <>
-              <img src='../../assets/pol-1.png' alt='Polkadot-1' className='w-60' />
+              <img src={Pol1} alt='Polkadot-1' className='w-60' />
               <img src={Pol2} alt='Polkadot-2' className='w-60' />
             </>
             :
