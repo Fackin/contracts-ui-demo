@@ -1,7 +1,7 @@
 import { HexString } from '@polkadot/util/types';
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import { Signer } from '@polkadot/types/types';
-import { Injected } from '@polkadot/extension-inject/types';
+// import { Injected } from '@polkadot/extension-inject/types';
 import { WALLET_STATUS } from '../../constants';
 
 type WalletStatus = typeof WALLET_STATUS[keyof typeof WALLET_STATUS];

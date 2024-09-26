@@ -7,7 +7,7 @@ import { AccountG as Account, Wallet, Wallets } from '../../types';
 import { HexString } from '@polkadot/util/types';
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
-import { web3Accounts, web3Enable, web3EnablePromise } from '@polkadot/extension-dapp';
+import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
 export function decodeAddress(publicKey: string): HexString {
   return u8aToHex(new Keyring().decodeAddress(publicKey));

@@ -7,7 +7,7 @@ import { NavLink } from './NavLink';
 import { useDatabase } from 'ui/contexts';
 import { useDbQuery } from 'ui/hooks';
 // import { Dropdown } from 'ui/components';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 // import {
 //   components,
 //   ControlProps,
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router';
 // import type { DropdownOption } from 'types';
 
 export function QuickLinks() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { db } = useDatabase();
   const [contracts] = useDbQuery(() => db?.contracts.toArray() || Promise.resolve(null), [db]);
   // const contracts = [

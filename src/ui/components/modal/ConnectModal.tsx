@@ -8,10 +8,10 @@ import { useAccount } from 'ui/contexts';
 import { WALLETS } from '../connect/consts';
 import { useWallet } from '../../hooks';
 import { AccountButton } from '../account';
-import { LogoutIcon, RefreshIcon } from '@heroicons/react/solid';
-import { ClipboardCopyIcon, InformationCircleIcon } from '@heroicons/react/outline';
+import { LogoutIcon } from '@heroicons/react/solid';
+import { InformationCircleIcon } from '@heroicons/react/outline';
 import { classes } from 'lib/util';
-import copy from 'copy-to-clipboard';
+// import copy from 'copy-to-clipboard';
 import { Tooltip } from 'react-tooltip';
 import { CopyButton } from 'ui/components/common/CopyButton';
 import { ReconnectMessageModal } from 'ui/components/modal/ReconnectMessageModal';
@@ -20,7 +20,7 @@ import { useState } from 'react';
 export const ConnectModal = ({ isOpen, setIsOpen }: Omit<ModalProps, 'title'>) => {
 
 
-  const { wallets, isAnyWallet, account, login, logout, reConnectWallet } = useAccount();
+  const { wallets, isAnyWallet, account, login, logout } = useAccount();
   const { wallet, walletId, setWalletId, resetWalletId } = useWallet();
 
   const [visibleModal, setVisibleModal] = useState(false);
@@ -28,8 +28,8 @@ export const ConnectModal = ({ isOpen, setIsOpen }: Omit<ModalProps, 'title'>) =
   
   const renderWallets = () =>
     WALLETS.map(([id, { SVG, name }]) => {
-      const { status, accounts, connect, reConnect } = wallets?.[id] || {};
-      const isEnabled = Boolean(status);
+      const { status, accounts, connect } = wallets?.[id] || {};
+      // const isEnabled = Boolean(status);
       const isConnected = status === 'connected';
 
       const accountsCount = accounts?.length;
