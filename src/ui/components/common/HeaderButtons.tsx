@@ -28,8 +28,10 @@ export function HeaderButtons({ contract: { address, codeHash } }: Props) {
   };
 
   useEffect(() => {
+    console.log('contract', api, address); 
     getContractInfo(api, address)
       .then(info => {
+        console.log('info', info);
         setIsOnChain(info ? true : false);
       })
       .catch(console.error);

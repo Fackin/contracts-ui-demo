@@ -14,6 +14,8 @@ interface Props {
 }
 
 export const ResultsOutput = ({ registry, results, outcome, message }: Props) => {
+
+  console.log(registry, results, outcome, message, 'ResultsOutput-----')
   return (
     <>
       <SidePanel

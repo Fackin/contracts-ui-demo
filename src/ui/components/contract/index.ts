@@ -6,3 +6,5 @@ export * from './Interact';
 export * from './MetadataTab';
 export * from './ResultsOutput';
 export * from './TransactionResult';
+export * from './OwnersList';
+export * from './SpenderList';

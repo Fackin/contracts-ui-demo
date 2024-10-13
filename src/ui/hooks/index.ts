@@ -12,3 +12,4 @@ export * from './useStorageDepositLimit';
 export * from './useToggle';
 export * from './useStoredContract';
 export * from './useWallet';
+export * from './useGetDecodedOutput';

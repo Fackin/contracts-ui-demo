@@ -13,6 +13,9 @@ export function Navigation() {
       <NavLink end icon={CollectionIcon} to={`/`}>
         All Contracts
       </NavLink>
+      {/* <NavLink end icon={CollectionIcon} to={`/owners-manage`}>
+        All Owners
+      </NavLink> */}
     </div>
   );
 }

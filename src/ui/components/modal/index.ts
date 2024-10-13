@@ -4,3 +4,4 @@
 export * from './ForgetAllContractsModal';
 export * from './ForgetContractModal';
 export * from './HelpModal';
+export * from './AddAuthOwnerModal';

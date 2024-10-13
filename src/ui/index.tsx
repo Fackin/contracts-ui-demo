@@ -1,6 +1,3 @@
-// Copyright 2022-2024 use-ink/contracts-ui authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
-
 import { Buffer } from 'buffer';
 
 // 将 Buffer 设置为全局对象
@@ -21,6 +18,9 @@ import {
   NotFound,
   AddressLookup,
   IconPage,
+  Owners,
+  Spender,
+  Project
 } from 'ui/pages';
 
 globalThis.Buffer = Buffer;
@@ -43,7 +43,10 @@ root.render(
           <Route path=":codeHash" />
         </Route>
         <Route element={<Contract />} path="contract/:address/" />
+        <Route element={<Owners />} path="contract/owners/:address/" />
+        <Route element={<Spender />} path="contract/spender/:address/" />
         <Route element={<IconPage />} path="iconpage" />
+        <Route element={<Project />} path="project" />
         <Route element={<NotFound />} path="*" />
       </Route>
     </Routes>

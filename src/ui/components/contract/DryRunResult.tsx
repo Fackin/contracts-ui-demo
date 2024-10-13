@@ -23,6 +23,7 @@ export function DryRunResult({
   registry,
 }: Props) {
   const { decodedOutput, isError } = getDecodedOutput({ result, debugMessage }, message, registry);
+  console.log('decodedOutput', decodedOutput, result, message, registry)
   const { api } = useApi();
   const { value: storageDepositValue, type: storageDepositType } =
     decodeStorageDeposit(storageDeposit);

@@ -32,7 +32,7 @@ export function ArgumentForm({ args, argValues, registry, setArgValues, classNam
 
         return (
           <FormField
-            className={classes(className, arg.name, 'mb-4 ml-6 mt-2')}
+            className={classes('mb-4 ml-6 mt-2', className, arg.name)}
             key={`${arg.name}`}
             label={
               <ArgSignature

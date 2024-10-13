@@ -106,6 +106,8 @@ export const InteractTab = ({
     async function dryRun() {
       if (!message) return;
       const o = await api.call.contractsApi.call(...params);
+
+      console.log(o, '----outcome ----- 222-----')
       setOutcome(o);
     }
 
@@ -117,6 +119,7 @@ export const InteractTab = ({
       }, 300);
     }
 
+    console.log(api.call.contractsApi, message, params, nextResultId, '----====-----')
     debouncedDryRun();
   }, [api.call.contractsApi, message, params, nextResultId]);
 
@@ -165,6 +168,10 @@ export const InteractTab = ({
       value: message.isPayable ? (params[2] as Balance) : undefined,
     };
 
+    console.log('call-----------')
+    // console.log(isCustom, refTime.limit, proofSize.limit, api.registry)
+    console.log(message.method, argValues)
+    console.log('call-----------end')
     const isValid = (result: SubmittableResult) => !result.isError && !result.dispatchError;
 
     const extrinsic = tx[message.method](
